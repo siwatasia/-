@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="th"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>โต๊ะเรียน ม.6/3</title>
+<style>
+:root{--bg:#ffeaf4;--bg2:#e3f4ff;--card:#ffffffd9;--tx:#2b2a3d;--mu:#7a7894;--ac:#ec4899;--ac2:#38bdf8;--acs:#e3f4ff;--bd:#f9d0e4;--ok:#16a34a;--bad:#e11d48;--hl:#ffe0ef;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#241526;--bg2:#12202e;--card:#1e1b2ecc;--tx:#f3eefa;--mu:#a9a3c0;--ac:#f472b6;--ac2:#38bdf8;--acs:#1c2c40;--bd:#3d2a4a;--hl:#43213a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#241526;--bg2:#12202e;--card:#1e1b2ecc;--tx:#f3eefa;--mu:#a9a3c0;--ac:#f472b6;--ac2:#38bdf8;--acs:#1c2c40;--bd:#3d2a4a;--hl:#43213a;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(150deg,var(--bg),var(--bg2)) fixed;color:var(--tx);font-family:"Sarabun","Noto Sans Thai",system-ui,sans-serif;font-size:16px}
+.wrap{max-width:980px;margin:0 auto;padding:16px}
+h1{font-size:1.5rem;margin:4px 0;background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}.sub{color:var(--mu);font-size:.9rem;margin-bottom:12px}
+nav{display:flex;gap:6px;margin:12px 0;position:sticky;top:env(safe-area-inset-top,0px);background:transparent;backdrop-filter:blur(8px);padding:6px 0;z-index:5}
+nav button{flex:1;padding:10px 6px;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:10px;font:inherit;cursor:pointer}
+nav button.on{background:linear-gradient(90deg,var(--ac),var(--ac2));color:#fff;border-color:transparent;box-shadow:0 4px 12px #ec489944}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:14px;margin-bottom:12px;box-shadow:0 6px 20px #ec489914;backdrop-filter:blur(6px)}
+.sc{overflow-x:auto}
+table{border-collapse:collapse;min-width:760px;width:100%;font-size:.8rem}
+th,td{border:1px solid var(--bd);padding:6px 4px;text-align:center;vertical-align:middle}
+th{background:linear-gradient(180deg,var(--acs),transparent)}td{background:#ffffff40}td b{display:block}td small{color:var(--mu);display:block}
+tr.today td,tr.today th{background:var(--hl)}td.now{outline:2px solid var(--ac);outline-offset:-2px}
+td.brk{background:var(--acs);color:var(--mu);writing-mode:vertical-rl;font-size:.75rem}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+input,select,button.pri{font:inherit;padding:10px;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:var(--tx)}
+input[type=text]{flex:1;min-width:160px}
+button.pri{background:linear-gradient(90deg,var(--ac),var(--ac2));color:#fff;border-color:transparent;cursor:pointer;font-weight:600}
+.hw{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--bd)}
+.hw:last-child{border:0}.hw .t{flex:1}.hw.done .t b{text-decoration:line-through;color:var(--mu)}
+.tag{font-size:.75rem;background:var(--acs);color:#0ea5e9;font-weight:600;padding:2px 8px;border-radius:99px}
+.late{color:var(--bad)}.soon{color:#d97706}.x{background:none;border:0;color:var(--mu);font-size:1.2rem;cursor:pointer}
+input[type=checkbox]{width:22px;height:22px}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.ph{border:1px solid var(--bd);border-radius:10px;overflow:hidden;background:var(--card);position:relative}
+.ph img{width:100%;height:130px;object-fit:cover;display:block;cursor:zoom-in}
+.ph div{padding:6px 8px;font-size:.8rem}.ph .x{position:absolute;top:2px;right:6px;color:#fff;text-shadow:0 0 4px #000}
+.empty{color:var(--mu);text-align:center;padding:18px}
+#lb{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;z-index:20}
+#lb img{max-width:95%;max-height:92%}
+.sec{display:none}.sec.on{display:block}
+#lg{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:30;padding:20px}
+#lg .card{width:100%;max-width:340px;text-align:center}#lg input{width:100%;margin:10px 0;text-align:center;font-size:1.2rem;letter-spacing:.1em}
+#er{color:var(--bad);min-height:1.2em;font-size:.9rem}.lk{cursor:pointer;text-decoration:underline}
+#cb{height:50vh;min-height:280px;overflow-y:auto;display:flex;flex-direction:column;gap:8px}
+.m{max-width:85%;padding:10px 12px;border-radius:16px;white-space:pre-wrap;line-height:1.55;word-break:break-word}
+.m.ai{background:var(--acs);align-self:flex-start;border-bottom-left-radius:4px}
+.m.me{background:linear-gradient(90deg,var(--ac),var(--ac2));color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+button.alt{background:var(--acs)!important;color:var(--tx)!important;border:1px solid var(--bd)!important}
+</style></head><body><div id="lg"><div class="card"><div style="font-size:2.4rem">📚</div><h1>โต๊ะเรียน ม.6/3</h1><div class="sub">กรอกรหัสประจำตัวเพื่อเข้าสู่ระบบ</div><input type="password" inputmode="numeric" id="sid" placeholder="รหัสประจำตัว" autocomplete="off"><div id="er"></div><button class="pri" id="go" style="width:100%">เข้าสู่ระบบ</button></div></div>
+<div class="wrap" id="app" hidden>
+<h1>📚 โต๊ะเรียน ม.6/3</h1>
+<div class="sub">ห้อง 603 · ภาคเรียนที่ 2/2569 · โรงเรียนพรรณาวุฒาจารย์ · <span id="clock"></span> · <span id="st"></span> · <span class="lk" id="lo">ออกจากระบบ</span></div>
+<nav><button data-t="a" class="on">🗓 ตารางเรียน</button><button data-t="b">📝 การบ้าน</button><button data-t="c">📷 รูปส่งงาน</button><button data-t="d">🤖 ติวเตอร์ AI</button></nav>
+
+<section id="a" class="sec on"><div class="card"><div class="sc"><table id="tb"></table></div></div>
+<div class="card" id="nxt"></div></section>
+
+<section id="b" class="sec"><div class="card"><div class="row">
+<input type="text" id="hn" placeholder="การบ้านอะไร เช่น ใบงานบทที่ 3">
+<select id="hs"></select><input type="date" id="hd"><button class="pri" id="ha">+ เพิ่ม</button></div></div>
+<div class="card"><b>ยังไม่ได้ทำ</b><div id="hl"></div></div>
+<div class="card"><b>ทำเสร็จแล้ว</b><div id="hdn"></div></div></section>
+
+<section id="c" class="sec"><div class="card"><div class="row">
+<select id="ps"></select><input type="text" id="pn" placeholder="ชื่องาน (ไม่บังคับ)">
+<input type="file" id="pf" accept="image/*" multiple></div>
+<div class="sub" style="margin:8px 0 0">รูปจะถูกย่อและเก็บไว้ในเครื่องนี้เท่านั้น</div></div>
+<div class="gal" id="gl"></div></section>
+
+<section id="d" class="sec"><div class="card"><div class="row"><select id="cs"></select><button class="pri alt" id="cc">ล้างแชต</button></div></div>
+<div class="card"><div id="cb"></div><div class="sub" id="cim" style="margin:8px 0 0"></div>
+<div class="row" style="margin-top:8px"><input type="text" id="ci" placeholder="พิมพ์โจทย์หรือคำถาม…"><input type="file" id="cf" accept="image/*" hidden><button class="pri alt" id="cp">📎 แนบรูป</button><button class="pri" id="cg">ส่ง</button></div></div></section>
+</div>
+<div id="lb"><img id="li" alt=""></div>
+<script>
+const D=["จันทร์","อังคาร","พุธ","พฤหัสฯ","ศุกร์"];
+const P=[["1","08.30–09.20"],["2","09.20–10.10"],["พัก","10.10–10.20"],["3","10.20–11.10"],["4","11.10–12.00"],["พักเที่ยง","12.00–13.00"],["5","13.00–13.50"],["6","13.50–14.40"],["7","14.40–15.30"],["8","15.30–16.20"]];
+const S=[
+[["น006","ครูภัสรา","422"],["ท33102","ครูนรพงษ์ป","465"],["ค33202","ครูศิริลักษ","226"],["พ33102","ครูอิทธิฤทธิ์","อุตสาหกรรม"],["ว33205","ครูพฤกษา","442"],["ว33205","ครูพฤกษา","442"],["โฮมรูม","ที่ปรึกษา",""],0],
+[["ค33102","ครูกุลนิษฐ์","227"],["อ33102","ครูนุจิรา","321"],["ว33225","ครูกนิษฐา","431"],["ว33225","ครูกนิษฐา","431"],["ศ33102","ครูสุรพงษ์","213"],["อ30212","ครู Hilda","333"],["ศึกษาค้นคว้า","",""],0],
+[["ท33102","ครูนรพงษ์ป","465"],["ค33202","ครูศิริลักษ","226"],["ง33102","ครูจุรารัตน์","412"],["จ30206","ครูกิติยา","472"],["ว33205","ครูพฤกษา","442"],["ว33205","ครูพฤกษา","442"],["ศึกษาค้นคว้า","",""],0],
+[["ว33245","ครูดวงใจ","441"],["ว33245","ครูดวงใจ","441"],["ค33202","ครูศิริลักษ","226"],["ส33202","ครูบุญวราง","232"],["อ33102","ครูนุจิรา","321"],["ส33102","ครูศิริวรรณ","413"],["ชุมนุม","",""],0],
+[["ค33202","ครูศิริลักษ","226"],["ว33245","ครูดวงใจ","441"],["ว33225","ครูกนิษฐา","431"],["พ30220","ครูปัญญาวุฒิ","603"],["ค33102","ครูกุลนิษฐ์","227"],["ส33102","ครูศิริวรรณ","413"],["ศึกษาค้นคว้า","",""],0]];
+const subs=[...new Set(S.flat().filter(x=>x&&/\d/.test(x[0])).map(x=>x[0]))].sort();
+const $=id=>document.getElementById(id);
+let DB=null,AS=null,UID=null,hw=[],ph=[];
+const lsg=k=>{try{return JSON.parse(localStorage.getItem(k))||[]}catch(e){return[]}};
+const lss=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){alert("พื้นที่เก็บเต็ม ลองลบรูปเก่าก่อน");return false}};
+const stat=t=>{$("st").textContent=t};
+const sv=k=>v=>{if(DB){stat("⏳ กำลังบันทึก…");DB.collection("data/users/"+UID).doc(k).set({list:v}).then(()=>stat("☁️ บันทึกแล้ว"),()=>{lss(k,v);stat("⚠️ บันทึกในเครื่องเท่านั้น")});return true}return lss(k,v)};
+async function boot(){
+ try{const c=window.claude;if(c){DB=await c.use("db");const u=await c.use("user");UID=u?await u.id():null;if(!UID)DB=null;AS=await c.use("assets")}}catch(e){DB=null}
+ if(DB){try{const g=async k=>{const s=await DB.collection("data/users/"+UID).doc(k).get();return s.exists?(s.data().list||[]):null};
+  const a=await g("hw"),b=await g("ph");hw=a||lsg("hw");ph=b||lsg("ph");stat("☁️ บันทึกอัตโนมัติ")}catch(e){DB=null;hw=lsg("hw");ph=lsg("ph");stat("💾 บันทึกในเครื่อง")}}
+ else{hw=lsg("hw");ph=lsg("ph");stat("💾 บันทึกในเครื่อง")}
+ rh();rp()}
+const mins=(a)=>{const[h,m]=a.split(".").map(Number);return h*60+m};
+function sched(){
+ const now=new Date(),dow=now.getDay()-1,cur=now.getHours()*60+now.getMinutes();
+ let h="<tr><th>วัน</th>"+P.map(p=>`<th>${p[0]}<small>${p[1]}</small></th>`).join("")+"</tr>";
+ D.forEach((d,i)=>{h+=`<tr class="${i==dow?"today":""}"><th>${d}</th>`;
+  let k=0;P.forEach((p,j)=>{
+   const[s,e]=p[1].split("–").map(mins2);const on=i==dow&&cur>=s&&cur<e;
+   if(isNaN(+p[0])){h+=i==0?`<td class="brk" rowspan="5">${p[0]}</td>`:"";return}
+   const c=S[i][k++];h+=`<td class="${on?"now":""}">${c?`<b>${c[0]}</b>${c[1]}<small>${c[2]}</small>`:""}</td>`})
+  h+="</tr>"});
+ $("tb").innerHTML=h;
+ let n="<b>คาบถัดไปวันนี้</b><div class='sub' style='margin:4px 0 0'>";
+ if(dow<0||dow>4)n+="วันนี้วันหยุด 🎉";else{let k=0,f=null;P.forEach(p=>{if(isNaN(+p[0]))return;const c=S[dow][k++];const s=mins2(p[1].split("–")[0]);if(!f&&c&&s>cur)f=[p,c]});
+ n+=f?`คาบ ${f[0][0]} (${f[0][1]}) · ${f[1][0]} ${f[1][1]} ${f[1][2]?"ห้อง "+f[1][2]:""}`:"หมดคาบเรียนแล้ววันนี้"}
+ $("nxt").innerHTML=n+"</div>"}
+function mins2(s){return mins(s.trim())}
+const opt=subs.map(s=>`<option>${s}</option>`).join("")+"<option>อื่น ๆ</option>";
+$("hs").innerHTML=opt;$("ps").innerHTML=opt;
+function rh(){
+ const row=(x,i)=>{let due="";if(x.d){const df=Math.ceil((new Date(x.d+"T23:59")-new Date())/864e5);
+  due=`<small class="${x.f?"":df<0?"late":df<=2?"soon":""}"> · ส่ง ${new Date(x.d).toLocaleDateString("th-TH",{day:"numeric",month:"short"})}${x.f?"":df<0?" (เลยกำหนด)":df==0?" (วันนี้!)":""}</small>`}
+  return `<div class="hw ${x.f?"done":""}"><input type="checkbox" ${x.f?"checked":""} onchange="tg(${i})"><div class="t"><b>${esc(x.n)}</b>${due}</div><span class="tag">${x.s}</span><button class="x" onclick="dh(${i})">×</button></div>`};
+ const L=hw.map((x,i)=>[x,i]);
+ const a=L.filter(([x])=>!x.f).sort((p,q)=>(p[0].d||"9")>(q[0].d||"9")?1:-1);
+ $("hl").innerHTML=a.map(([x,i])=>row(x,i)).join("")||'<div class="empty">ไม่มีการบ้านค้าง 🎉</div>';
+ $("hdn").innerHTML=L.filter(([x])=>x.f).map(([x,i])=>row(x,i)).join("")||'<div class="empty">ยังไม่มี</div>'}
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+window.tg=i=>{hw[i].f=!hw[i].f;sv("hw")(hw);rh()};
+window.dh=i=>{hw.splice(i,1);sv("hw")(hw);rh()};
+$("ha").onclick=()=>{const n=$("hn").value.trim();if(!n)return $("hn").focus();hw.push({n,s:$("hs").value,d:$("hd").value,f:false});sv("hw")(hw);$("hn").value="";rh()};
+$("hn").onkeydown=e=>{if(e.key=="Enter")$("ha").click()};
+function rp(){
+ $("gl").innerHTML=ph.map((x,i)=>`<div class="ph"><img src="${x.u}" onclick="zm(${i})" alt=""><button class="x" onclick="dp(${i})">×</button><div><span class="tag">${x.s}</span> ${esc(x.n||"")}<br><small style="color:var(--mu)">${x.t}</small></div></div>`).join("")||'<div class="empty" style="grid-column:1/-1">ยังไม่มีรูป เลือกไฟล์ด้านบนได้เลย</div>'}
+window.dp=i=>{if(confirm("ลบรูปนี้?")){const x=ph.splice(i,1)[0];if(x.id&&AS)AS.delete(x.id).catch(()=>{});sv("ph")(ph);rp()}};
+window.zm=i=>{$("li").src=ph[i].u;$("lb").style.display="flex"};
+$("lb").onclick=()=>$("lb").style.display="none";
+$("pf").onchange=async e=>{
+ for(const f of e.target.files){
+  const u=await new Promise(r=>{const im=new Image();im.onload=()=>{const k=Math.min(1,1000/Math.max(im.width,im.height));const c=document.createElement("canvas");c.width=im.width*k;c.height=im.height*k;c.getContext("2d").drawImage(im,0,0,c.width,c.height);c.toBlob(b=>r(b),"image/jpeg",.7)};im.onerror=()=>r(null);im.src=URL.createObjectURL(f)});
+  if(!u)continue;let url=null,id=null;if(AS){try{const r=await AS.upload(u);url=r.url;id=r.id}catch(er){}}if(!url)url=await new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result);fr.readAsDataURL(u)});ph.unshift({u:url,id,s:$("ps").value,n:$("pn").value.trim(),t:new Date().toLocaleString("th-TH",{dateStyle:"medium",timeStyle:"short"})});
+  if(!sv("ph")(ph)){ph.shift();break}}
+ e.target.value="";$("pn").value="";rp()};
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll("nav button,.sec").forEach(x=>x.classList.remove("on"));b.classList.add("on");$(b.dataset.t).classList.add("on")});
+function clk(){$("clock").textContent=new Date().toLocaleDateString("th-TH",{weekday:"long",day:"numeric",month:"long"})}
+clk();sched();setInterval(sched,60000);
+$("cs").innerHTML="<option>ทั่วไป</option>"+opt;
+let chat=[],busy=false,pimg=null;
+const INS="คุณคือติวเตอร์ใจดีสำหรับนักเรียน ม.6 ไทย ตอบเป็นภาษาไทย อธิบายทีละขั้นตอนให้เข้าใจง่าย ใช้ตัวอย่างสั้น ๆ ถ้าเป็นโจทย์ให้แสดงวิธีทำและสรุปคำตอบ ไม่ต้องใช้มาร์กดาวน์หนัก ๆ";
+function addMsg(r,t){const d=document.createElement("div");d.className="m "+r;d.textContent=t;$("cb").appendChild(d);$("cb").scrollTop=$("cb").scrollHeight;return d}
+function hello(){addMsg("ai","สวัสดี! ถามโจทย์หรือเรื่องที่ไม่เข้าใจได้เลย แนบรูปโจทย์ได้ด้วย 📚")}hello();
+$("cp").onclick=()=>$("cf").click();
+$("cf").onchange=e=>{pimg=e.target.files[0]||null;$("cim").textContent=pimg?"📎 แนบรูป: "+pimg.name:""};
+$("cc").onclick=()=>{chat=[];$("cb").innerHTML="";hello()};
+async function ask(){
+ const q=$("ci").value.trim();if((!q&&!pimg)||busy)return;
+ const sample=window.claude?await claude.use("sample"):null;
+ if(!sample){addMsg("ai","ฟีเจอร์นี้ใช้ได้เมื่อเปิดผ่านหน้าเว็บ Claude เท่านั้น");return}
+ busy=true;$("cg").disabled=true;
+ const sj=$("cs").value,txt=(sj!=="ทั่วไป"?"[วิชา "+sj+"] ":"")+(q||"ช่วยอธิบายโจทย์ในรูปนี้");
+ addMsg("me",txt+(pimg?" 📎":""));chat.push({role:"user",content:txt});
+ $("ci").value="";const img=pimg;pimg=null;$("cf").value="";$("cim").textContent="";
+ const out=addMsg("ai","กำลังคิด…");
+ try{
+  const o={cache:false,onText:({text})=>{out.textContent=text;$("cb").scrollTop=$("cb").scrollHeight}};
+  if(img){let ok=false;try{ok=(await sample.limits()).images}catch(e){}if(ok)o.images=[img];else out.textContent="(ระบบยังไม่รองรับรูป จึงตอบจากข้อความอย่างเดียว) "}
+  const msgs=chat.map((m,i)=>i==0?{role:m.role,content:INS+"\n\n"+m.content}:m);
+  const r=await sample(msgs,o);
+  out.textContent=r.text;chat.push({role:"assistant",content:r.text});
+ }catch(er){chat.pop();out.textContent=er&&er.code=="not_granted"?"ยังไม่ได้อนุญาตให้ใช้ AI กดส่งใหม่แล้วเลือกอนุญาต":er&&er.code=="rate_limited"?"ถามเร็วไปหน่อย รอสักครู่แล้วลองใหม่นะ":"ขออภัย เกิดข้อผิดพลาด ลองใหม่อีกครั้ง"}
+ busy=false;$("cg").disabled=false}
+$("cg").onclick=ask;$("ci").onkeydown=e=>{if(e.key=="Enter")ask()};
+function enter(){$("lg").style.display="none";$("app").hidden=false;boot()}
+function tryLogin(){if($("sid").value.trim()==="19580"){try{localStorage.setItem("ok","1")}catch(e){}enter()}else{$("er").textContent="รหัสไม่ถูกต้อง ลองใหม่อีกครั้ง"}}
+$("go").onclick=tryLogin;$("sid").onkeydown=e=>{if(e.key=="Enter")tryLogin()};
+$("lo").onclick=()=>{try{localStorage.removeItem("ok")}catch(e){}location.reload()};
+let ok=false;try{ok=localStorage.getItem("ok")=="1"}catch(e){}
+if(ok)enter();
+</script></body></html>
